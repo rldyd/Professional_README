@@ -35,11 +35,17 @@ function generateMarkdown(data) {
   ## Usage 
   ${data.usage}
 
-  ## Credits 
-  ${data.credits}
+  ## Test
+  ${data.test}
 
   ## License 
   ${data.license}
+
+  ## GitHub Username
+  ${data.gitusername}
+
+  ## Email
+  ${data.email}
 
 `;
 }
