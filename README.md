@@ -1,3 +1,7 @@
 # Professional README Generator Starter Code
 
-[How to create a Professional README](./readme-guide.md)
+* Simple generate REAME file
+
+# Video
+
+* https://drive.google.com/file/d/1anP8o0VKdSqo-Z5YeZKhAsHX-Pdl6fgA/view?usp=sharing
