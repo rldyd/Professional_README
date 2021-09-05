@@ -14,27 +14,23 @@
 // WHEN I click on the links in the Table of Contents
 // THEN I am taken to the corresponding section of the README
 
-const fs = require('fs');
-
 // TODO: Include packages needed for this application
+const fs = require('fs');
 const inquirer = require("inquirer");
-const writeToFile = require('./utils/generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
-const questions = () =>
-{
+const questions = () => {
     return inquirer.prompt([
         {
             type: 'input',
             name: 'title',
             message: "What is your project title? (Required)",
             validate: titleInput => {
-                if (titleInput)
-                {
+                if (titleInput) {
                     return true;
                 }
-                else
-                {
+                else {
                     console.log("Please enter your project title!");
                     return false;
                 }
@@ -44,14 +40,11 @@ const questions = () =>
             type: 'input',
             name: 'description',
             message: 'description of the project (Required)',
-            validate: descriptionInput =>
-            {
-                if (descriptionInput)
-                {
+            validate: descriptionInput => {
+                if (descriptionInput) {
                     return true;
                 }
-                else
-                {
+                else {
                     console.log("You need to enter a project description!");
                     return false;
                 }
@@ -61,85 +54,50 @@ const questions = () =>
             type: 'confirm',
             name: 'table',
             message: 'Would you like to add a table of contents to make it easy? (Optional)',
-            default: true
         },
         {
             type: 'input',
             name: 'installation',
             message: 'What are the steps required to install your project? Provide a step-by-step description of how to get the development enviroment runnig. (Required)',
-            validate: installationInput =>
-            {
-                if (installationInput)
-                {
+        },
+        {
+            type: 'input',
+            name: 'usage',
+            message: 'Provide instructions and examples for use. Include screenhosts as needed. (Required)',
+            validate: usageInput => {
+                if (usageInput) {
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
-        },
-        {
-           type: 'input',
-           name: 'usage',
-           message: 'Provide instructions and examples for use. Include screenhosts as needed. (Required)',
-           validate: usageInput =>
-           {
-               if (usageInput)
-               {
-                   return true;
-               }
-               else
-               {
-                   return false;
-               }
-           } 
         },
         {
             type: 'input',
             name: 'test',
             message: 'How did you test this project? (Required)',
-            validate: testInput =>
-            {
-                if (testInput)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
         },
         {
             type: 'checkbox',
             name: 'license',
-            message: 'The last section of a good README is a license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/).',
-            choices: ['Bable', 'NET Core', 'Rails', 'Ansible', 'Bash', 'GIMP', 'No License'],
-            validate: licenseInput =>
-            {
-                if (licenseInput)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
+            message: 'If your project is licesened, please select the appropriate option (Optional)',
+            choices: ['Apache', 'GNU', 'MIT', 'ISC', 'Other']
+        },
+        {
+            type: 'input',
+            name: 'licenseLink',
+            messgae: 'Please enter your licese link '
         },
         {
             type: 'input',
             name: 'gitusername',
             message: 'Waht is your github username? (Required)',
-            validate: gitusernameInput => 
-            {
-                if (gitusernameInput)
-                {
+            validate: gitusernameInput => {
+                if (gitusernameInput) {
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
@@ -148,41 +106,39 @@ const questions = () =>
             type: 'input',
             name: 'email',
             message: 'What is your email address? (Required)',
-            validate: emailInput =>
-            {
-                if (emailInput)
-                {
+            validate: emailInput => {
+                if (emailInput) {
                     return true;
                 }
-                else
-                {
+                else {
                     return false;
                 }
             }
         }
-
-
     ])
-}
+};
+
+// TODO: Create a function to write README file
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, error => {
+        if (error) {
+            return console.log(error);
+        } else {
+            console.log("Your README file has been generated");
+        }
+    })
+
+};
+
 
 // TODO: Create a function to initialize app
-function init() 
-{
-    inquirer.prompt(questions)
-    .then(questions =>
-        {
-            const tempHTML = writeToFile(questions);
-            fs.writeFile('./dist/README.md', tempHTML, err =>
-            {
-                if (err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    console.log('Good to go!');
-                }
-            })
+function init() {
+    questions()
+        .then(userAns => {
+
+            let markdown = generateMarkdown(userAns);
+            console.log(markdown);
+            writeToFile("./readme-guide.md", markdown);
         })
 }
 
