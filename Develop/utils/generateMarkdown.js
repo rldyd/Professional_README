@@ -73,7 +73,8 @@ function generateMarkdown(data) {
   
   ## Questions
   #### If you have additional questions or would like to get in touch with me, reach out using a method below
-  #### Github UserName - @${data.github}
+  #### Github UserName - @${data.gitusername}
+  #### [Github Profile](${data.githubLink})
   #### [Email](${data.email})
 `;
 }

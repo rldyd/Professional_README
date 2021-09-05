@@ -14,27 +14,28 @@
   
   
   ## Description
-  #### Readme File generate
+  #### generate simple README file
   
 
   ## Installation 
-  #### npm init and install inquirer
+  #### answer the questions for generating README file
   
   ## Usage
-  #### for using create professional README file to github with project members 
+  #### for github 
   
   ## Contribution 
   #### undefined
   
   ## Tests
-  #### Tested in terminal
+  #### tested
   
   ## License 
-  #### undefined
-  ####  
-  #### no 
+  #### [![License](https://img.shields.io/badge/license-Apache-blue)](http://www.apache.org/licenses/LICENSE-2.0)
+  #### Apache 
+  #### https://img.shields.io/badge/license-Apache-blue 
   
   ## Questions
   #### If you have additional questions or would like to get in touch with me, reach out using a method below
-  #### Github UserName - @undefined
-  #### [Email](K@gmail.com)
+  #### Github UserName - @rldyd
+  #### [Github Profile](github.com/rldyd)
+  #### [Email](Kyle@gmail.com)

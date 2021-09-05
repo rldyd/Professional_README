@@ -103,6 +103,11 @@ const questions = () => {
             }
         },
         {
+            type: "input",
+            name: "githubLink",
+            message: "Please type your github link (Optional)."
+        },
+        {
             type: 'input',
             name: 'email',
             message: 'What is your email address? (Required)',
